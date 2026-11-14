@@ -15,10 +15,23 @@ def listar_tarefas():
 
 def concluir_tarefa():
     listar_tarefas()
+    if not tarefas:
+        return
     numero = int(input("Número da tarefa: "))
     if 1 <= numero <= len(tarefas):
         tarefas[numero - 1]["concluida"] = True
         print("Tarefa concluída!")
+    else:
+        print("Número inválido.")
+
+def excluir_tarefa():
+    listar_tarefas()
+    if not tarefas:
+        return
+    numero = int(input("Número da tarefa que deseja excluir: "))
+    if 1 <= numero <= len(tarefas):
+        removida = tarefas.pop(numero - 1)
+        print(f"Tarefa '{removida['nome']}' excluída!")
     else:
         print("Número inválido.")
 
@@ -27,6 +40,7 @@ while True:
     print("1 - Adicionar tarefa")
     print("2 - Listar tarefas")
     print("3 - Concluir tarefa")
+    print("4 - Excluir tarefa")
     print("0 - Sair")
 
     opcao = input("Escolha uma opção: ")
@@ -37,6 +51,8 @@ while True:
         listar_tarefas()
     elif opcao == "3":
         concluir_tarefa()
+    elif opcao == "4":
+        excluir_tarefa()
     elif opcao == "0":
         print("Encerrando programa...")
         break
